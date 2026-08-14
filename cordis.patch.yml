@@ -1,0 +1,18 @@
+# dsh-session-export bundle patch: export completed sessions to Markdown.
+#
+# Mounts the export plugin over any base profile (web / headless / tui).
+# When a turn ends, the plugin waits debounceMs of quiet before writing the
+# session transcript plus token/turn statistics to $DSH_HOME/exports/.
+#
+# Configuration (via the profile's cordis.patch.yml or --patch overlays):
+#   - id: session-export
+#     config:
+#       enabled: true          # set false to disable auto export
+#       outDir: /path/to/dir   # override the export directory
+#       debounceMs: 1000       # quiet time after turn/end before exporting
+#       maxResultChars: 2000   # truncation length for tool results
+
+- insert:
+    - id: session-export
+      name: 'dsh-session-export'
+      inject: [sessions]
