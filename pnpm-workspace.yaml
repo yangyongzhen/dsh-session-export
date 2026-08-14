@@ -1,0 +1,6 @@
+packages:
+  - .
+
+# hoisted layout: hard links instead of symlinks (symlink creation is blocked
+# on Windows hosts without admin/developer mode, e.g. behind security software)
+nodeLinker: hoisted
